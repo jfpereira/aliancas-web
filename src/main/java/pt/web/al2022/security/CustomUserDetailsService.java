@@ -27,11 +27,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userService.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
 
-        Set<GrantedAuthority> authorities = Set.of(SecurityUtils.convertToAuthority(user.getRole()));
+        Set<GrantedAuthority> authorities = Set.of(SecurityUtils.convertToAuthority(user.getRole().name()));
 
         return CustomUser.builder()
                 .user(user)
-                .id(user.getIdUser())
+                .id(user.getId())
                 .username(user.getEmail())
                 .password(user.getPassword())
                 .authorities(authorities)

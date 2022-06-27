@@ -28,7 +28,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/scss/black-dashboard.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -106,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "angular"
+  "defaultProject": "angular",
+  "cli": {
+    "analytics": "7aec1e8b-67ab-4533-8463-cad6d2219100"
+  }
 }

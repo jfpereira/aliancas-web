@@ -1,0 +1,107 @@
+<div class="modal fade" id="playerModal" tabIndex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #f="ngForm" (ngSubmit)="f.form.valid && savePlayer()">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Player Details</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            <strong>Error!</strong> {{errorMessage}}
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              class="form-control"
+              [(ngModel)]="player.email"
+              #email="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !email.valid">
+              Email is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              class="form-control"
+              [(ngModel)]="player.nome"
+              #nome="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !nome.valid">
+              Nome is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="apelido">Apelido</label>
+            <input
+              type="text"
+              id="apelido"
+              name="apelido"
+              class="form-control"
+              [(ngModel)]="player.apelido"
+              #apelido="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && !apelido.valid">
+              Apelido is required.
+            </div>
+          </div>
+
+<!--          <div class="form-group">-->
+<!--            <label for="posicao">Posição</label>-->
+<!--            <input-->
+<!--              type="number"-->
+<!--              id="posicao"-->
+<!--              name="posicao"-->
+<!--              class="form-control"-->
+<!--              [(ngModel)]="player.posicao"-->
+<!--              #posicao="ngModel"-->
+<!--              required-->
+<!--            />-->
+<!--            <div class="alert-danger" *ngIf="f.submitted && !posicao.valid">-->
+<!--              Posicao is required.-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <div class="form-group">
+            <label for="num">Número</label>
+            <input
+              type="number"
+              id="num"
+              name="num"
+              class="form-control"
+              [(ngModel)]="player.num"
+              #num="ngModel"
+              required
+            />
+            <div class="alert-danger" *ngIf="f.submitted && (!num.valid || player.num <= 0 || player.num >= 100)">
+              Numero is required and should bt grater than 0 and less than 100.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" type="submit">Save Changes</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,9 @@ import { NotFoundComponent } from './error/not-found/not-found.component';
 import { UnauthorizedComponent } from './error/unauthorized/unauthorized.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { ProfileComponent } from './user/profile/profile.component';
+import { PlayerComponent } from './admin/player/player.component';
+import {ComponentsModule} from "./components/components.module";
 
 @NgModule({
   declarations: [
@@ -21,14 +24,17 @@ import {FormsModule} from "@angular/forms";
     HomeComponent,
     AdminComponent,
     NotFoundComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    ProfileComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

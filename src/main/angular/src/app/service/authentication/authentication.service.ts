@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {User} from "../../models/user.model";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
-const API_URL = '${environment.BASE_URL}/api/authentication';
-const URL_SIGN_IN = "sign-in";
-const URL_SIGN_UP = "sign-up";
+const API_URL = environment.BASE_URL + '/api/authentication';
+const URL_SIGN_IN = "/sign-in";
+const URL_SIGN_UP = "/sign-up";
 
 @Injectable({
   providedIn: 'root'

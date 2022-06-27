@@ -13,7 +13,7 @@ public class Alianca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_alianca")
-    private Long idAlianca;
+    private Long id;
 
     @Column(name = "email")
     private String email;
@@ -39,8 +39,7 @@ public class Alianca {
     @Column(name = "peso")
     private Integer peso;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pos", referencedColumnName = "id_pos")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "posicao")
     private Posicao posicao;
-
 }

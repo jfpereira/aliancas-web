@@ -1,6 +1,5 @@
 package pt.web.al2022.security.jwt;
 
-import com.sun.security.auth.UserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,10 +14,7 @@ import pt.web.al2022.security.CustomUser;
 import pt.web.al2022.utils.SecurityUtils;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.DatatypeConverter;
-import java.security.Key;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Set;
@@ -33,6 +29,8 @@ public class JwtProvider implements IJwtProvider {
     @Value("${app.jwt.expiration.in-ms}")
     private Long JWT_EXPIRATION_IN_MS;
 
+    SecretKey KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+
     @Override
     public String generateToken(CustomUser auth) {
 
@@ -40,14 +38,12 @@ public class JwtProvider implements IJwtProvider {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
-        SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-
         return Jwts.builder()
                 .setSubject(auth.getUsername())
                 .claim("roles", authorities)
                 .claim("userId", auth.getId())
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION_IN_MS))
-                .signWith(key)
+                .signWith(KEY)
                 .compact();
     }
 
@@ -112,23 +108,10 @@ public class JwtProvider implements IJwtProvider {
             return null;
         }
 
-        SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-
         return Jwts.parserBuilder()
-                .setSigningKey(key)
+                .setSigningKey(KEY)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-    }
-
-
-    /**
-     *
-     * @return
-     */
-    private Key generateKey() {
-
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(JWT_SECRET);
-        return new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS512.getJcaName());
     }
 }
