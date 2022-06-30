@@ -2,11 +2,11 @@
   <div class=" container-fluid">
     <div class=" navbar-wrapper">
       <div class=" navbar-toggle d-inline">
-<!--        <button class=" navbar-toggler" type="button" (click)="sidebarToggle()">-->
-<!--          <span class=" navbar-toggler-bar bar1"> </span>-->
-<!--          <span class=" navbar-toggler-bar bar2"> </span>-->
-<!--          <span class=" navbar-toggler-bar bar3"> </span>-->
-<!--        </button>-->
+        <button class=" navbar-toggler" type="button" (click)="sidebarToggle()">
+          <span class=" navbar-toggler-bar bar1"> </span>
+          <span class=" navbar-toggler-bar bar2"> </span>
+          <span class=" navbar-toggler-bar bar3"> </span>
+        </button>
       </div>
       <a class=" navbar-brand"> Alianças </a>
     </div>
@@ -16,11 +16,24 @@
 <!--    <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">-->
       <div class=" navbar-collapse"  id="navigation">
         <ul class=" navbar-nav ml-auto">
-            <div class="navbar-nav ms-auto" *ngIf="!currentUser?.id">
-              <li class="nav-item">
+              <li class="nav-item" *ngIf="!currentUser?.id">
                 <a [routerLink]="['/login']" routerLinkActive="active" class="nav-link">Sign In</a>
               </li>
-            </div>
+
+<!--            <div class=" navbar-collapse" >-->
+              <li class=" nav-item" ngbDropdown *ngIf="currentUser?.id">
+                <a [routerLink]="['/profile']" routerLinkActive="active" class=" nav-link" data-toggle="dropdown" ngbDropdownToggle>
+                  {{currentUser.email}}
+                </a>
+                <ul class=" dropdown-navbar" ngbDropdownMenu>
+                  <li class=" nav-link">
+                    <a (click)="logOut()" class=" nav-link" style="cursor:pointer;" ngbDropdownItem>
+                      Sign Out
+                    </a>
+                  </li>
+                </ul>
+              </li>
+<!--            </div>-->
           <li class=" separator d-lg-none"></li>
         </ul>
       </div>
