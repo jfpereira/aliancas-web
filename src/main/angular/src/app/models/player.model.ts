@@ -1,12 +1,12 @@
-import {Posicao} from "./posicao.enum";
+import {PlayerRole} from "./playerRole.enum";
 
 export class Player {
   id: number |undefined;
   email: string = "";
-  nome: string = "";
-  apelido: string = "";
-  num: number = 0;
-  altura: number = 0;
-  peso: number = 0;
-  posicao: Posicao = Posicao.STAFF;
+  name: string = "";
+  surname: string = "";
+  number: number = 0;
+  height: number = 0;
+  weight: number = 0;
+  playerRole: PlayerRole = PlayerRole.STAFF;
 }

@@ -1,11 +1,11 @@
 package pt.web.al2022.service;
 
-import pt.web.al2022.model.Alianca;
+import pt.web.al2022.model.Player;
 
 import java.util.Collection;
 
 public interface IPlayerService {
-    Collection<Alianca> findAllPlayers();
+    Collection<Player> findAllPlayers();
 
-    Alianca savePlayer(Alianca alianca);
+    Player savePlayer(Player player);
 }

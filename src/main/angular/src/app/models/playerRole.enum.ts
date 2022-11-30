@@ -1,4 +1,4 @@
-export enum Posicao {
+export enum PlayerRole {
   GUARDA_REDES = 'GUARDA_REDES',
   DEFESA = 'DEFESA',
   MEDIO = 'MEDIO',

@@ -7,7 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pt.web.al2022.mapper.UserMapper;
-import pt.web.al2022.model.Alianca;
+import pt.web.al2022.model.Player;
 import pt.web.al2022.model.Role;
 import pt.web.al2022.model.User;
 import pt.web.al2022.repository.UserRepo;
@@ -42,7 +42,6 @@ public class UserService implements IUserService {
         log.info("Create new user {}", user.getEmail());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setDataInicio(LocalDateTime.now());
 
         if(null != user.getRole()) {
             user.setRole(Role.USER);
@@ -61,13 +60,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User saveUserAlianca(Alianca alianca) {
+    public User saveUserAlianca(Player player) {
 
-        log.info("Create new user by alianca email {}", alianca.getEmail());
+        log.info("Create new user by alianca email {}", player.getEmail());
 
-        User user = userRepo.save(userMapper.aliancaToUser(alianca));
+        User user = userRepo.save(userMapper.playerToUser(player));
 
-        log.info("New user id {} successfully created for alianca {}", user.getId(), alianca.getEmail());
+        log.info("New user id {} successfully created for alianca {}", user.getId(), player.getEmail());
 
         return user;
     }

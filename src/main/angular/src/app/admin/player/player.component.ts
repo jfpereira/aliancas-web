@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Player} from "../../models/player.model";
 import {PlayerService} from "../../service/player/player.service";
-import {Posicao} from "../../models/posicao.enum";
+import {PlayerRole} from "../../models/playerRole.enum";
 
 declare var $: any;
 

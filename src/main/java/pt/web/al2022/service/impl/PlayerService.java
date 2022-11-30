@@ -2,8 +2,8 @@ package pt.web.al2022.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.web.al2022.model.Alianca;
-import pt.web.al2022.repository.AliancaRepo;
+import pt.web.al2022.model.Player;
+import pt.web.al2022.repository.PlayerRepo;
 import pt.web.al2022.service.IPlayerService;
 import pt.web.al2022.service.IUserService;
 
@@ -12,26 +12,26 @@ import java.util.Collection;
 @Service
 public class PlayerService implements IPlayerService {
 
-    private final AliancaRepo aliancaRepo;
+    private final PlayerRepo playerRepo;
     private final IUserService userService;
 
-    public PlayerService(@Autowired AliancaRepo aliancaRepo, @Autowired IUserService userService) {
-        this.aliancaRepo = aliancaRepo;
+    public PlayerService(@Autowired PlayerRepo playerRepo, @Autowired IUserService userService) {
+        this.playerRepo = playerRepo;
         this.userService = userService;
     }
 
 
     @Override
-    public Collection<Alianca> findAllPlayers() {
+    public Collection<Player> findAllPlayers() {
 
-        return aliancaRepo.findAll();
+        return playerRepo.findAll();
     }
 
     @Override
-    public Alianca savePlayer(Alianca alianca) {
+    public Player savePlayer(Player player) {
 
-        userService.saveUserAlianca(alianca);
+        userService.saveUserAlianca(player);
 
-        return aliancaRepo.save(alianca);
+        return playerRepo.save(player);
     }
 }

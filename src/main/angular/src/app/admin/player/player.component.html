@@ -37,7 +37,7 @@
               id="nome"
               name="nome"
               class="form-control"
-              [(ngModel)]="player.nome"
+              [(ngModel)]="player.name"
               #nome="ngModel"
               required
             />
@@ -53,7 +53,7 @@
               id="apelido"
               name="apelido"
               class="form-control"
-              [(ngModel)]="player.apelido"
+              [(ngModel)]="player.surname"
               #apelido="ngModel"
               required
             />
@@ -85,11 +85,11 @@
               id="num"
               name="num"
               class="form-control"
-              [(ngModel)]="player.num"
+              [(ngModel)]="player.number"
               #num="ngModel"
               required
             />
-            <div class="alert-danger" *ngIf="f.submitted && (!num.valid || player.num <= 0 || player.num >= 100)">
+            <div class="alert-danger" *ngIf="f.submitted && (!num.valid || player.number <= 0 || player.number >= 100)">
               Numero is required and should bt grater than 0 and less than 100.
             </div>
           </div>

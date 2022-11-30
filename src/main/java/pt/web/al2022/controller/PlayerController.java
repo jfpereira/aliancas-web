@@ -6,7 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pt.web.al2022.model.Alianca;
+import pt.web.al2022.model.Player;
 import pt.web.al2022.service.IPlayerService;
 import pt.web.al2022.service.IUserService;
 
@@ -30,14 +30,14 @@ public class PlayerController {
     }
 
     @PostMapping
-    public ResponseEntity<?> savePlayer(@RequestBody Alianca alianca) {
+    public ResponseEntity<?> savePlayer(@RequestBody Player player) {
 
-        if(userService.findByEmail(alianca.getEmail()).isPresent()) {
-            log.info("User with email {} already exists!", alianca.getEmail());
+        if(userService.findByEmail(player.getEmail()).isPresent()) {
+            log.info("User with email {} already exists!", player.getEmail());
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        return  new ResponseEntity<>(iPlayerService.savePlayer(alianca), HttpStatus.CREATED);
+        return  new ResponseEntity<>(iPlayerService.savePlayer(player), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{idPlayer}")
